@@ -42,14 +42,14 @@ namespace casino.Service
         //returns true if user win, false if the dealer wins.
         private bool DidUserWin()
         {
+            Deck deck = new Deck();
+            deck.Shuffle();
+
+            Hand userHand = new Hand();
+            Hand dealerHand = new Hand();
+
             while (true)
             {
-                Deck deck = new Deck();
-                deck.Shuffle();
-
-                Hand userHand = new Hand();
-                Hand dealerHand = new Hand();
-
                 //Let the user draw card.
                 while (true)
                 {
@@ -100,7 +100,6 @@ namespace casino.Service
 
                 //Display hands, values and who won.
                 PrintHand(dealerHand, false);
-
                 PrintHand(userHand);
 
                 int userValue = userHand.GetValue();
@@ -127,21 +126,14 @@ namespace casino.Service
 
         private void PrintHand(Hand hand, bool isUsersHand = true)
         {
-            if (isUsersHand)
-            {
-                Console.WriteLine("Your hand:\n");
-            }
-            else
-            {
-                Console.WriteLine("Dealer's hand:\n");
-            }
+            Console.WriteLine($"{(isUsersHand ? "Your" : "Dealer's")} hand:\n");
             hand.PrintHand();
             Console.WriteLine();
         }
 
         private void PrintHandValues(int userValue, int dealerValue)
         {
-            Console.WriteLine($"Value of dealer's hand: {dealerValue}\n");
+            Console.WriteLine($"Value of dealer's hand: {dealerValue}");
             Console.WriteLine($"Value of your hand: {userValue}\n");
         }
 
