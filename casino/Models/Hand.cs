@@ -10,7 +10,17 @@ namespace casino.Models
 
         public Hand()
         {
+            InitiateHand();
+        }
+
+        private void InitiateHand()
+        {
             hand = new List<Card>();
+        }
+
+        public void ResetHand()
+        {
+            InitiateHand();
         }
 
         public void AddCard(Card card)
