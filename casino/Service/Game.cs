@@ -43,13 +43,13 @@ namespace casino.Service
         private bool DidUserWin()
         {
             Deck deck = new Deck();
-            deck.Shuffle();
-
             Hand userHand = new Hand();
             Hand dealerHand = new Hand();
-
+          
             while (true)
             {
+                deck.Shuffle();
+              
                 //Let the user draw card.
                 while (true)
                 {
