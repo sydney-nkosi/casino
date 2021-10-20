@@ -5,23 +5,13 @@ namespace casino.Service
 {
     public class Game
     {
-        //Single play
-        //public void Play()
-        //{
-        //  //Keys meaning
-        //  Console.WriteLine("\nHit(h) - to get dealt card, stand(s) - not to get dealt card.\n");    
-        //  DidUserWin();
-        //}
-
         //Multiple play until user decides to stop
         public void Play()
         {
             //Keys meaning
             Console.WriteLine("\nHit(h) - to get dealt card, stand(s) - not to get dealt card.\n");
 
-            bool continuePlaying = true;
-
-            while (continuePlaying)
+            while (true)
             {
                 DidUserWin();
                 Console.Write("Want to play again? y/n. ");
@@ -35,7 +25,6 @@ namespace casino.Service
                 {
                     break;
                 }
-
             }
         }
 
@@ -105,11 +94,12 @@ namespace casino.Service
                 int userValue = userHand.GetValue();
                 int dealerValue = dealerHand.GetValue();
 
+                PrintHandValues(userValue, dealerValue);
+                
                 if (userValue == dealerValue)
                 {
-                    PrintHandValues(userValue, dealerValue);
                     Console.WriteLine($"It's a draw. You play again.\n");
-                    //Incase of a draw we reset deck, hands and let users play again.
+                    //In case of a draw we reset deck, hands and let users play again.
                     deck.ResetDeck();
                     userHand.ResetHand();
                     dealerHand.ResetHand();
@@ -117,7 +107,6 @@ namespace casino.Service
                 }
 
                 bool userWin = userValue > dealerValue;
-                PrintHandValues(userValue, dealerValue);
                 Console.WriteLine($"You {(userWin ? "win" : "lose")}.\n");
 
                 return userWin;
