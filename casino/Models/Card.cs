@@ -13,7 +13,6 @@ namespace casino.Models
             _suit = suit;
             _value = value;
         }
-
         
         public override string ToString()
         {
